@@ -115,7 +115,34 @@
         </div>
         
         <?php
-        // check voor foutmelding in url\n        if (isset($_GET['error'])) {\n            echo '<div class=\"error\">' . htmlspecialchars($_GET['error']) . '</div>';\n        }\n        // check voor succes bericht in url\n        if (isset($_GET['success'])) {\n            echo '<div class=\"success\">Ruimte object succesvol geupload!</div>';\n        }\n        ?>\n        \n        <form action=\"verwerk.php\" method=\"POST\" enctype=\"multipart/form-data\">\n            <label for=\"naam\">Naam van ruimte object:</label>\n            <input type=\"text\" id=\"naam\" name=\"naam\" required>\n            \n            <label for=\"type\">Type object:</label>\n            <select id=\"type\" name=\"type\" required>\n                <option value=\"\">Selecteer een type</option>\n                <option value=\"Planeet\">Planeet</option>\n                <option value=\"Maan\">Maan</option>\n                <option value=\"Ster\">Ster</option>\n                <option value=\"Komeet\">Komeet</option>\n                <option value=\"Asteroide\">Asteroide</option>\n                <option value=\"Nevel\">Nevel</option>\n                <option value=\"Sterrenstelsel\">Sterrenstelsel</option>\n                <option value=\"Ruimtesonde\">Ruimtesonde</option>\n                <option value=\"Satelliet\">Satelliet</option>\n                <option value=\"Zwart gat\">Zwart gat</option>\n            </select>
+        // check voor foutmelding in url
+        if (isset($_GET['error'])) {
+            echo '<div class="error">' . htmlspecialchars($_GET['error']) . '</div>';
+        }
+        // check voor succes bericht in url
+        if (isset($_GET['success'])) {
+            echo '<div class="success">Ruimte object succesvol geupload!</div>';
+        }
+        ?>
+        
+        <form action="verwerk.php" method="POST" enctype="multipart/form-data">
+            <label for="naam">Naam van ruimte object:</label>
+            <input type="text" id="naam" name="naam" required>
+            
+            <label for="type">Type object:</label>
+            <select id="type" name="type" required>
+                <option value="">Selecteer een type</option>
+                <option value="Planeet">Planeet</option>
+                <option value="Maan">Maan</option>
+                <option value="Ster">Ster</option>
+                <option value="Komeet">Komeet</option>
+                <option value="Asteroide">Asteroide</option>
+                <option value="Nevel">Nevel</option>
+                <option value="Sterrenstelsel">Sterrenstelsel</option>
+                <option value="Ruimtesonde">Ruimtesonde</option>
+                <option value="Satelliet">Satelliet</option>
+                <option value="Zwart gat">Zwart gat</option>
+            </select>
             
             <label for="omschrijving">Korte omschrijving:</label>
             <textarea id="omschrijving" name="omschrijving" required></textarea>

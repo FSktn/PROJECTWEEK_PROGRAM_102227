@@ -117,7 +117,48 @@
             exit();
         }
         
-        // haal id op uit url\n        $id = (int)$_GET['id'];\n        \n        try {\n            // verbind met database\n            $pdo = getDatabaseConnection();\n            \n            // haal object op met specifieke id\n            $stmt = $pdo->prepare(\"SELECT * FROM ruimteObjecten WHERE id = :id\");\n            $stmt->execute([':id' => $id]);\n            $object = $stmt->fetch();\n            \n            // check of object gevonden is\n            if ($object) {\n                // toon object details\n                echo '<div class=\"detail-card\">';\n                echo '<img src=\"kosmos/' . htmlspecialchars($object['filename']) . '\" alt=\"' . htmlspecialchars($object['objectName']) . '\">';\n                echo '<div class=\"detail-info\">';\n                echo '<h2>' . htmlspecialchars($object['objectName']) . '</h2>';\n                \n                // toon type\n                echo '<div class=\"info-row\">';\n                echo '<div class=\"info-label\">Type</div>';\n                echo '<div class=\"info-value\">' . htmlspecialchars($object['type']) . '</div>';\n                echo '</div>';\n                \n                // toon omschrijving\n                echo '<div class=\"info-row\">';\n                echo '<div class=\"info-label\">Omschrijving</div>';\n                echo '<div class=\"info-value\">' . nl2br(htmlspecialchars($object['description'])) . '</div>';\n                echo '</div>';\n                \n                echo '</div>';\n                echo '</div>';\n            } else {\n                // object niet gevonden\n                echo '<div class=\"error\">Object niet gevonden.</div>';\n            }\n        } catch (PDOException $e) {\n            // bij fout toon foutmelding\n            echo '<div class=\"error\">Kon gegevens niet laden uit de database.</div>';\n        }
+        // haal id op uit url
+        $id = (int)$_GET['id'];
+        
+        try {
+            // verbind met database
+            $pdo = getDatabaseConnection();
+            
+            // haal object op met specifieke id
+            $stmt = $pdo->prepare("SELECT * FROM ruimteObjecten WHERE id = :id");
+            $stmt->execute([':id' => $id]);
+            $object = $stmt->fetch();
+            
+            // check of object gevonden is
+            if ($object) {
+                // toon object details
+                echo '<div class="detail-card">';
+                echo '<img src="kosmos/' . htmlspecialchars($object['filename']) . '" alt="' . htmlspecialchars($object['objectName']) . '">';
+                echo '<div class="detail-info">';
+                echo '<h2>' . htmlspecialchars($object['objectName']) . '</h2>';
+                
+                // toon type
+                echo '<div class="info-row">';
+                echo '<div class="info-label">Type</div>';
+                echo '<div class="info-value">' . htmlspecialchars($object['type']) . '</div>';
+                echo '</div>';
+                
+                // toon omschrijving
+                echo '<div class="info-row">';
+                echo '<div class="info-label">Omschrijving</div>';
+                echo '<div class="info-value">' . nl2br(htmlspecialchars($object['description'])) . '</div>';
+                echo '</div>';
+                
+                echo '</div>';
+                echo '</div>';
+            } else {
+                // object niet gevonden
+                echo '<div class="error">Object niet gevonden.</div>';
+            }
+        } catch (PDOException $e) {
+            // bij fout toon foutmelding
+            echo '<div class="error">Kon gegevens niet laden uit de database.</div>';
+        }
         ?>
     </div>
 </body>
