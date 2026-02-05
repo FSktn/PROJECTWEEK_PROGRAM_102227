@@ -22,7 +22,7 @@
             margin: 0 auto;
             background-color: white;
             padding: 30px;
-            border-radius: 5px;
+            border-radius: 2px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
@@ -45,11 +45,12 @@
         
         input[type="text"],
         input[type="file"],
+        select,
         textarea {
             padding: 10px;
             margin-bottom: 20px;
             border: 1px solid #ddd;
-            border-radius: 3px;
+            border-radius: 2px;
             font-size: 14px;
         }
         
@@ -60,24 +61,24 @@
         }
         
         input[type="submit"] {
-            background-color: #0066cc;
+            background-color: #000;
             color: white;
             padding: 12px;
             border: none;
-            border-radius: 3px;
+            border-radius: 2px;
             font-size: 16px;
             cursor: pointer;
         }
         
         input[type="submit"]:hover {
-            background-color: #0052a3;
+            background-color: #333;
         }
         
         .error {
             background-color: #ffebee;
             color: #c62828;
             padding: 10px;
-            border-radius: 3px;
+            border-radius: 2px;
             margin-bottom: 20px;
         }
         
@@ -85,7 +86,7 @@
             background-color: #e8f5e9;
             color: #2e7d32;
             padding: 10px;
-            border-radius: 3px;
+            border-radius: 2px;
             margin-bottom: 20px;
         }
         
@@ -95,8 +96,9 @@
         }
         
         .navigation a {
-            color: #0066cc;
+            color: #000;
             text-decoration: none;
+            font-weight: bold;
         }
         
         .navigation a:hover {
@@ -113,20 +115,7 @@
         </div>
         
         <?php
-        if (isset($_GET['error'])) {
-            echo '<div class="error">' . htmlspecialchars($_GET['error']) . '</div>';
-        }
-        if (isset($_GET['success'])) {
-            echo '<div class="success">Ruimte object succesvol geupload!</div>';
-        }
-        ?>
-        
-        <form action="verwerk.php" method="POST" enctype="multipart/form-data">
-            <label for="naam">Naam van ruimte object:</label>
-            <input type="text" id="naam" name="naam" required>
-            
-            <label for="type">Type object:</label>
-            <input type="text" id="type" name="type" required>
+        // check voor foutmelding in url\n        if (isset($_GET['error'])) {\n            echo '<div class=\"error\">' . htmlspecialchars($_GET['error']) . '</div>';\n        }\n        // check voor succes bericht in url\n        if (isset($_GET['success'])) {\n            echo '<div class=\"success\">Ruimte object succesvol geupload!</div>';\n        }\n        ?>\n        \n        <form action=\"verwerk.php\" method=\"POST\" enctype=\"multipart/form-data\">\n            <label for=\"naam\">Naam van ruimte object:</label>\n            <input type=\"text\" id=\"naam\" name=\"naam\" required>\n            \n            <label for=\"type\">Type object:</label>\n            <select id=\"type\" name=\"type\" required>\n                <option value=\"\">Selecteer een type</option>\n                <option value=\"Planeet\">Planeet</option>\n                <option value=\"Maan\">Maan</option>\n                <option value=\"Ster\">Ster</option>\n                <option value=\"Komeet\">Komeet</option>\n                <option value=\"Asteroide\">Asteroide</option>\n                <option value=\"Nevel\">Nevel</option>\n                <option value=\"Sterrenstelsel\">Sterrenstelsel</option>\n                <option value=\"Ruimtesonde\">Ruimtesonde</option>\n                <option value=\"Satelliet\">Satelliet</option>\n                <option value=\"Zwart gat\">Zwart gat</option>\n            </select>
             
             <label for="omschrijving">Korte omschrijving:</label>
             <textarea id="omschrijving" name="omschrijving" required></textarea>
